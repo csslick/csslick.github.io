@@ -1,0 +1,115 @@
+*{margin: 0;padding: 0;}
+html,body{ height: 100%;}
+h1{ 
+  position: absolute;
+  left: 0; right: 0;
+  text-align: center;
+  top: 20px;
+  font-weight: lighter; 
+  color: #666;
+}
+main{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; height: 100%;
+}
+section{ 
+  position: relative;
+  width: 80%; height: 80%;
+  animation: box 1s 1;
+  animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+@keyframes box{
+  from{
+    opacity: 0;
+    transform: scale(0.5,0) rotate(-180deg);
+  }
+  to{
+    opaity: 1;
+    transform: scale(1,1) rotate(0deg);
+  }
+}
+
+
+section > div:nth-child(1),
+section > div:nth-child(2),
+section > div:nth-child(3),
+section > div:nth-child(4),
+section > div:nth-child(5),
+section > div:nth-child(6),
+section > div:nth-child(7),
+section > div:nth-child(8),
+section > div:nth-child(9),
+section > div:nth-child(10){
+  position: relative;
+}
+section > div:nth-child(1),
+section > div:nth-child(2)
+{
+  width: 50%;height: 25%;
+  background: #bac;
+  float: left;
+}
+section > div:nth-child(2){
+  background: pink;
+}
+section > div:nth-child(3),
+section > div:nth-child(4),
+section > div:nth-child(5){
+  width: 25%; height: 25%;
+  float: left;
+}
+section > div:nth-child(3){
+  background: #369; height: 50%;
+}
+section > div:nth-child(4){
+  background: #399;
+  width: 50%;
+}
+section > div:nth-child(5){
+  background: #969;
+  width: 25%;
+}
+section > div:nth-child(6),
+section > div:nth-child(7){
+  width: 25%; height: 25%;
+  float: left;
+}
+section > div:nth-child(6){
+  background: #c96;
+}
+section > div:nth-child(7){
+  width: 50%;
+  background: #99c;
+}
+section > div:nth-child(8),
+section > div:nth-child(9),
+section > div:nth-child(10){
+  float: left;
+  width: 33.33%; height: 25%;
+}
+section > div:nth-child(8){
+  background: #cab;
+}
+section > div:nth-child(9){
+  background: #9cd;
+}
+section > div:nth-child(10){
+  background: #698;
+}
+
+/* 테두리 곡선 */
+section > div:nth-child(1){ 
+  border-top-left-radius: 10px;
+}
+section > div:nth-child(2){ 
+  border-top-right-radius: 10px;
+}
+section > div:nth-child(8){ 
+  border-bottom-left-radius: 10px;
+}
+section > div:nth-child(10){ 
+  border-bottom-right-radius: 10px;
+}
