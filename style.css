@@ -99,6 +99,7 @@ section > div:nth-child(9){
 }
 section > div:nth-child(10){
   background: #698;
+  float: right;
 }
 
 /* 테두리 곡선 */
