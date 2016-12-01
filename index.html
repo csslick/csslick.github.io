@@ -1,1 +1,48 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ex14-4-3 | ES6 클래스 상속</title>
+</head>
+<body>
+
+<script>
+
+	"use strict";
+
+	// 클래스 선언
+	class Character{
+		constructor(name, job){
+			this.name = name;
+			this.job = job;
+		}
+		move(){
+			document.write(this.name + ' ' + this.job + ' 캐릭터 이동<br>');
+		}
+	}
+
+	// 자식 클래스 추가
+	class Monster extends Character{
+		constructor(name, job, skill){
+			super(name, job);		// 상속받은 객체(부모)의 생성자를 호출
+			this.skill = skill;		// 속성을 추가
+		}
+		useSkill(){
+			document.write(this.name + ' ' + this.job + ' '
+							+ this.skill + ' 스킬 사용<br>');
+		}
+	}
+
+	//인스턴스 객체 생성
+	let char1 = new Character('루이스', '기사');
+	let monster = new Monster('오크', '대장', '몽둥이')
+
+	// 메소드 실행
+	char1.move();	
+	monster.useSkill();
+	monster.move();
+
+</script>	
+
+</body>
+</html>
