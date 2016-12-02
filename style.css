@@ -93,6 +93,7 @@ section > div:nth-child(10){
 }
 section > div:nth-child(8){
   background: #cab;
+  clear:left;
 }
 section > div:nth-child(9){
   background: #9cd;
