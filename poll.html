@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>독소증상 자가테스트</title>
+</head>
+<body>
+
+<form name='test'>
+ <ol>
+	 <li>
+	    <label for="">저녁 시간이 늦는 편이다</label>
+	    <input type='checkbox' name='q'>
+	 </li>
+	  <li>
+	    <label for="">두통을 자주 앓는다</label>
+	    <input type='checkbox' name='q'>
+	 </li>
+	 <li>
+	    <label for="">잠을 잘 못 이루는 편이다</label>
+	    <input type='checkbox' name='q'>
+	 </li>
+	  <li>
+	    <label for="">식후에 속이 더부룩하거나 속쓰림이 있다</label>
+	    <input type='checkbox' name='q'>
+	 </li>
+	 <li>
+	    <label for="">의욕이 없고 피곤하다</label>
+	    <input type='checkbox' name='q'>
+	 </li> 
+	 <li>
+	    <label for="">오랫동안 같은 자세로 일한다</label>
+	    <input type='checkbox' name='q'>
+	 </li>
+	 <li>
+	    <label for="">얼굴이니 몸에 부어 있는 부분이 있다</label>
+	    <input type='checkbox' name='q'>
+	 </li>  
+	 <li>
+	    <label for="">조금만 피곤해도 다크서클이 진해지고 뾰루지가 올라온다</label>
+	    <input type='checkbox' name='q'>
+	 </li> 
+	 <li>
+	    <label for="">피부가 건조하고 머리카락이 잘 빠진다</label>
+	    <input type='checkbox' name='q'>
+	 </li>
+	 <li>
+	    <label for="">배에 자주 가스가 찬다</label>
+	    <input type='checkbox' name='q'>
+	 </li>  
+	 <li>
+	    <label for="">과자를 자주 먹는다</label>
+	    <input type='checkbox' name='q'>
+	 </li> 
+	 <li>
+	    <label for="">변비에 자주 걸리는 편이다</label>
+	    <input type='checkbox' name='q'>
+	 </li> 
+	 <li>
+	    <label for="">몸이 자주 저리는 편이다</label>
+	    <input type='checkbox' name='q'>
+	 </li> 
+ </ol>
+    <button id='result_btn'>result</button>
+</form>	
+<p id="txt"></p>
+
+<script>
+
+var btn = document.getElementById('result_btn');
+var txt = document.getElementById('txt');
+
+function result(cnt){
+	if(cnt >= 11){ 
+		txt.style.color = 'red';
+		txt.innerHTML = '만성 질환에 걸릴 확률이 높습니다.';
+	} else if(cnt <= 10 && cnt >= 6){
+		txt.style.color = 'orange';
+		txt.innerHTML = '독소가 쌓여가는 상태로 관리가 필요합니다.';
+	} else if(cnt <= 5){
+		txt.style.color = 'green';
+		txt.innerHTML = '양호한 편입니다.';
+	}
+
+}
+
+function testc(e){
+    var frm = document.forms.test.q;
+    var cnt = 0;
+    console.log(frm.length);
+    for(var i = 0;i < frm.length;i++){
+        if(frm[i].checked) cnt++;
+    }
+
+    result(cnt);
+    console.log(cnt);
+    e.preventDefault();
+}
+
+btn.addEventListener('click', testc);
+
+</script>
+
+</body>
+</html>
