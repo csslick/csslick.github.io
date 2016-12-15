@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Page 3D</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+	<style>
+		*{ margin: 0; padding: 0; }
+		body{ width: 100%; height: 100%; }
+		ul{ list-style: none; }
+		header{ 
+			position: absolute; 
+			width: 100%;
+			text-align: center;
+			height: 80px;
+			background: white;
+			z-index: 9;
+		}
+		header h1{ 
+			text-align: center;font-weight: normal; 
+			line-height: 80px;
+		}
+		.container{
+			position: absolute;
+			width: 100%; height: 100%;
+			margin: 0px auto;
+			transform-style: preserve-3d;
+			perspective: 800px;
+			overflow: hidden;
+			box-sizing: border-box;
+		}
+		.wrapper{
+			width: 100%; height: 100%;
+			position: relative;
+			margin: auto;
+			transform-style: preserve-3d;
+			transition-duration: 1s;
+		}
+		.wrapper > .page{ 
+			position: absolute;
+			width: 100%; height: 100%;
+			position: absolute;
+			left: 0; top: 0;
+			backface-visibility: hidden;
+			padding-top: 80px;
+		}
+		.wrapper > .page:nth-child(1){
+			background: orange;
+			background-image: url(https://iso.500px.com/wp-content/uploads/2016/05/stock-photo-151040087-1500x1000.jpg);
+			background-size: cover;
+		}
+		.wrapper > .page:nth-child(2){
+			background: pink;
+			background-image: url(https://iso.500px.com/wp-content/uploads/2016/05/stock-photo-151040087-1500x1000.jpg);
+			background-size: cover;			
+		}	
+		.wrapper > .page:nth-child(3){
+			background: lightblue;
+		}
+		.wrapper > .page:nth-child(4){
+			background: lightgray;
+		}							
+
+		#indicator{ 
+			text-align: center; margin-top: 20px;
+			position: absolute;
+			left: 0;right: 0; bottom: 20px;
+		}
+		#indicator li{
+			display: inline-block;
+			font-size: 12px;
+			padding: 5px 10px; margin: 5px;
+			border: 1px solid #999;
+			border-radius: 50%;
+		}
+		#indicator li.active{ 
+			background: #666; color: white;
+		}
+		
+	</style>
+</head>
+<body>
+	<header>
+		<h1>3D Page</h1>
+	</header>
+	<div class="container">
+		<div class="wrapper">
+			<div class="page">
+				<h1>page1</h1>
+			</div>
+			<div class="page">
+				<h1>page2</h1>
+			</div>
+			<div class="page">
+				<h1>page3</h1>
+			</div>
+			<div class="page">
+				<h1>page4</h1>
+			</div>
+		</div>
+	</div>
+	<ul id=indicator>
+	</ul>
+
+	<script>
+		$(function(){
+
+			var yDeg = 0,	// page wrapper 회전 각도
+				indicator_num = 1,
+				indicator_length = $('.wrapper .page').size(); // 인디케이터 개수(페이지수)
+			var wrapper = document.querySelector('.wrapper');
+			var page = document.querySelectorAll('.page');
+			var w = page[0].offsetWidth, //현재 페이지 width
+				page_angle = 0;	// 페이지 4면체 각도
+
+			// 페이지 초기화
+			function init_page(){
+				w = page[0].offsetWidth; // 페이지 width
+
+				// page wrapper 정면으로 초기화
+				wrapper.style.transform = 'translateZ(' + (-w/2) + 'px) rotateY(' + yDeg + 'deg)';
+	
+				// 3D page 4면체 위치 정의
+				for(var i = 0; i < page.length; i++){
+					page[i].style.transform = 'rotateY(' + page_angle + 'deg) translateZ(' + (w/2) + 'px)';
+					page_angle += 90;
+				}				
+			}			
+
+			// 인디케이터 초기화
+			function init_indicator(){
+				// 이미지 갯수 만큼 인디케이터 표시
+				for(var i = 0; i < indicator_length; i++){
+					$('#indicator').append('<li>' + (i+1) + '</li>');
+				}		
+				show_indicator(indicator_num);		
+			}
+
+			function show_indicator(indicator_num){
+				console.log(indicator_num);
+				// 현재 인디케이터 하이라이트 표시
+				$('#indicator li').eq(indicator_num).addClass('active');
+				yDeg = 90 * (indicator_num - 1);
+				yDeg = -(yDeg);
+				wrapper.style.transform = 'translateZ(' + (-w/2) + 'px) rotateY(' + yDeg + 'deg)';
+
+				// 인디케이터 표시
+				$('#indicator li').removeClass('active');
+				$('#indicator li').eq(indicator_num -1).addClass('active');					
+			}
+
+			// 페이지 초기화
+			init_page();
+			init_indicator();
+
+			/* ------------------- 이벤트 핸들러 ------------------------------ */
+			// 인디케이터 클릭시 페이지 변경
+			$('#indicator li').click(function(){
+				indicator_num = $(this).text();	// 인디케이터 번호
+				show_indicator(indicator_num);
+				
+			});
+
+			// 문서 크기가 변경되면 초기화
+			$(window).resize(function(){
+				init_page();				
+			});
+
+		});	// end $()
+	</script>
+
+
+</body>
+</html>
