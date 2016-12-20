@@ -2,13 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<title>Page 3D</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<style>
 		*{ margin: 0; padding: 0; }
 		body{ width: 100%; height: 100%; }
 		ul{ list-style: none; }
+		a{ 
+			text-decoration: none;
+			color: inherit; 
+		}
 		header{ 
 			position: absolute; 
 			width: 100%;
@@ -45,21 +51,29 @@
 			backface-visibility: hidden;
 			padding-top: 80px;
 		}
+		.page > h1{ 
+			padding: 20px; 
+			color: white;
+		}
 		.wrapper > .page:nth-child(1){
 			background: orange;
-			background-image: url(https://iso.500px.com/wp-content/uploads/2016/05/stock-photo-151040087-1500x1000.jpg);
+			background-image: url('img03.jpg');
 			background-size: cover;
 		}
 		.wrapper > .page:nth-child(2){
 			background: pink;
-			background-image: url(https://iso.500px.com/wp-content/uploads/2016/05/stock-photo-151040087-1500x1000.jpg);
+			background-image: url('img02.jpg');
 			background-size: cover;			
 		}	
 		.wrapper > .page:nth-child(3){
 			background: lightblue;
+			background-image: url('img01.jpg');
+			background-size: cover;	
 		}
 		.wrapper > .page:nth-child(4){
 			background: lightgray;
+			background-image: url('img04.jpg');
+			background-size: cover;				
 		}							
 
 		#indicator{ 
@@ -73,136 +87,71 @@
 			padding: 5px 10px; margin: 5px;
 			border: 1px solid #999;
 			border-radius: 50%;
+			color: white;
 		}
 		#indicator li.active{ 
-			background: #666; color: white;
+			background-color: rgba(50%,50%,50%, 0.5);
+			color: white;
 		}
-		
+
+		ul.icons{
+			overflow: hidden;
+			padding: 64px;
+		}
+		ul.icons > li{ 
+			display: inline-block; 
+			margin: 0 24px 64px 24px;
+			background: #999;
+			padding: 10px;
+			width: 48px; height: 48px;
+			border-radius: 15px;
+			text-align: center;
+			border: 1px solid rgba(100, 100, 100, 0.3);
+			color: white;
+		}
+
 	</style>
 </head>
 <body>
 	<header>
-		<h1>3D Page</h1>
+		<h1>자바스크립트 프로젝트 북</h1>
 	</header>
 	<div class="container">
 		<div class="wrapper">
 			<div class="page">
 				<h1>page1</h1>
+				<ul class="icons">
+					<li><a href="#"><i class="fa fa-home fa-3x"></i></a></li>
+					<li><a href="#"><i class="fa fa-cog fa-3x"></i></a></li>
+					<li><a href="#"><i class="fa fa-camera-retro fa-3x"></i></a></li>
+					<li><a href="#"><i class="fa fa-chrome fa-3x"></i></a></li>
+					<li><a href="#"><i class="fa fa-film fa-3x"></i></a></li>
+				</ul>
 			</div>
 			<div class="page">
 				<h1>page2</h1>
+				<ul class="icons">
+					<li><a href="#"><i class="fa fa-home fa-3x"></i></a></li>
+					<li><a href="#"><i class="fa fa-cog fa-3x"></i></a></li>
+					<li><a href="#"><i class="fa fa-camera-retro fa-3x"></i></a></li>
+				</ul>				
 			</div>
 			<div class="page">
 				<h1>page3</h1>
 			</div>
 			<div class="page">
 				<h1>page4</h1>
+				<ul class="icons">
+					<li><a href="#"><i class="fa fa-home fa-3x"></i></a></li>
+					<li><a href="#"><i class="fa fa-cog fa-3x"></i></a></li>
+					<li><a href="#"><i class="fa fa-camera-retro fa-3x"></i></a></li>
+				</ul>				
 			</div>
 		</div>
 	</div>
 	<ul id=indicator>
 	</ul>
 
-	<script>
-
-		var wrapper = document.querySelector('.wrapper'),
-			page = document.querySelectorAll('.page'),
-			indicator = document.getElementById('indicator'),
-			indicator_li = indicator.querySelectorAll('li');
-
-		var yDeg = 0,	// page wrapper 회전 각도
-			indicator_num = 1,
-			indicator_length = $('.wrapper .page').size(), 	// 인디케이터 개수(페이지수)
-			w = page[0].offsetWidth,	// 현재 페이지 width
-			page_angle = 0,				// 페이지 4면체 각도
-			page_vector = 0;			// 페이지 진행 방향 변수(1 or -1)
-
-		var hammer = new Hammer(wrapper);
-
-
-		// 페이지 초기화
-		function init_page(){
-			w = page[0].offsetWidth; // 페이지 width
-
-			// page wrapper 정면으로 초기화
-			wrapper.style.transform = 'translateZ(' + (-w/2) + 'px) rotateY(' + yDeg + 'deg)';
-	
-			// 3D page 4면체 위치 정의
-			for(var i = 0; i < page.length; i++){
-				page[i].style.transform = 'rotateY(' + page_angle + 'deg) translateZ(' + (w/2) + 'px)';
-				page_angle += 90;
-			}				
-		}			
-
-		// 인디케이터 초기화
-		function init_indicator(){
-			// 이미지 갯수 만큼 인디케이터 표시
-			for(var i = 0; i < indicator_length; i++){
-				indicator.innerHTML += '<li>' + (i+1) + '</li>';
-			}		
-			indicator_li = indicator.querySelectorAll('li'); // 목록
-			show_indicator(indicator_num);		
-		}
-
-		function show_indicator(inum){
-			// 현재 인디케이터 하이라이트 표시
-			indicator_li[inum-1].setAttribute('class', 'active');
-			yDeg = 90 * (inum - 1);
-			yDeg = -(yDeg);
-			wrapper.style.transform = 'translateZ(' + (-w/2) + 'px) rotateY(' + yDeg + 'deg)';
-
-			// 인디케이터 표시
-			for(var i = 0; i < indicator_li.length; i++){
-				indicator_li[i].removeAttribute('class');
-			}
-			indicator_li[inum - 1].setAttribute('class', 'active');			
-		}
-
-		/* ---------------------------------------------------------------- */
-		// 페이지 초기화
-		init_page();
-		init_indicator();
-		console.log(indicator_num);
-
-		/* ------------------- 이벤트 핸들러 ------------------------------ */
-		for(var i =0; i < indicator_li.length; i++){
-			indicator_li[i].addEventListener('click', function(){
-				// 인디케이터 번호(정수로 변환)
-				indicator_num = parseInt($(this).text());
-				show_indicator(indicator_num);
-			});
-		}
-
-		// 터치 방향 좌측 벡터
-		hammer.on('panleft', function(ev){
-			console.log(ev.type +" gesture detected.");
-			if(indicator_num < indicator_length){
-				page_vector = 1;
-			} else page_vector = 0;
-		});
-
-		// 터치 방향 우측 벡터
-		hammer.on('panright', function(ev){
-			console.log(ev.type +" gesture detected.");	
-			if(indicator_num > 1){
-				page_vector = -1;
-			} else page_vector = 0;
-		});
-
-		// 터치를 떼는 순간
-		hammer.on('panend', function(ev){
-			indicator_num += page_vector;				
-			show_indicator(indicator_num);
-			console.log(ev.type +" gesture detected.");	
-			console.log('next= '+ indicator_num);
-		});
-
-		// 문서 크기가 변경되면 초기화
-		window.onresize = function(){
-			init_page();	
-		}
-
-	</script>
-
+	<script src="desktop_app.js"></script>
 </body>
 </html>
