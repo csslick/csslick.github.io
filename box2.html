@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>연습문제2</title>
+<style>
+	#box{
+	  width: 200px; height: 200px;
+	  border: 3px solid black;
+	  margin: 50px;
+	}		
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+
+</head>
+
+<body>
+	<div id="box">
+	  <h1>box</h1>
+	</div>
+	<button id="left">rotate left</button>
+	<button id="right">rotate right</button>	
+
+<script>
+	var left = document.getElementById('left');
+	var right = document.getElementById('right');
+	var box = document.getElementById('box');
+	var angle = 0;
+	var hammer = new Hammer(box);
+
+	left.addEventListener('click', function(){
+	  angle -= 10;
+	  box.style.transform= 'rotate(' + angle + 'deg)';
+	});
+
+	right.addEventListener('click', function(){
+	  angle += 10;
+	  box.style.transform= 'rotate(' + angle + 'deg)';
+	});	
+
+	hammer.on('panleft', function(){
+		angle -= 10;
+		box.style.transform= 'rotate(' + angle + 'deg)';
+	});
+	hammer.on('panright', function(){
+		angle += 10;
+		box.style.transform= 'rotate(' + angle + 'deg)';
+	});	
+
+</script>
+</body>
+</html>
