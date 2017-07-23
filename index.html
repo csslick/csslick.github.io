@@ -7,111 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-	<style>
-		*{ margin: 0; padding: 0; }
-		body{ width: 100%; height: 100%; }
-		ul{ list-style: none; }
-		a{ 
-			text-decoration: none;
-			color: inherit; 
-		}
-		header{ 
-			position: absolute; 
-			width: 100%;
-			text-align: center;
-			height: 80px;
-			background: white;
-			z-index: 9;
-		}
-		header h1{ 
-			text-align: center;font-weight: normal; 
-			line-height: 80px;
-		}
-		.container{
-			position: absolute;
-			width: 100%; height: 100%;
-			margin: 0px auto;
-			transform-style: preserve-3d;
-			perspective: 800px;
-			overflow: hidden;
-			box-sizing: border-box;
-		}
-		.wrapper{
-			width: 100%; height: 100%;
-			position: relative;
-			margin: auto;
-			transform-style: preserve-3d;
-			transition-duration: 1s;
-		}
-		.wrapper > .page{ 
-			position: absolute;
-			width: 100%; height: 100%;
-			position: absolute;
-			left: 0; top: 0;
-			backface-visibility: hidden;
-			padding-top: 80px;
-		}
-		.page > h1{ 
-			padding: 20px; 
-			color: white;
-		}
-		.wrapper > .page:nth-child(1){
-			background: orange;
-			background-image: url('./img01.jpg');
-			background-size: cover;
-		}
-		.wrapper > .page:nth-child(2){
-			background: pink;
-			background-image: url('./img02.jpg');
-			background-size: cover;			
-		}	
-		.wrapper > .page:nth-child(3){
-			background: lightblue;
-			background-image: url('./img03.jpg');
-			background-size: cover;	
-		}
-		.wrapper > .page:nth-child(4){
-			background: lightgray;
-			background-image: url('./img04.jpg');
-			background-size: cover;				
-		}							
-
-		#indicator{ 
-			text-align: center; margin-top: 20px;
-			position: absolute;
-			left: 0;right: 0; bottom: 20px;
-		}
-		#indicator li{
-			display: inline-block;
-			font-size: 12px;
-			padding: 5px 10px; margin: 5px;
-			border: 1px solid #999;
-			border-radius: 50%;
-			color: white;
-			cursor: pointer;
-		}
-		#indicator li.active{ 
-			background-color: rgba(50%,50%,50%, 0.5);
-			color: white;
-		}
-
-		ul.icons{
-			overflow: hidden;
-			padding: 64px;
-		}
-		ul.icons > li{ 
-			display: inline-block; 
-			margin: 0 24px 64px 24px;
-			background: #999;
-			padding: 10px;
-			width: 48px; height: 48px;
-			border-radius: 15px;
-			text-align: center;
-			border: 1px solid rgba(100, 100, 100, 0.3);
-			color: white;
-		}
-
-	</style>
+	<link rel="stylesheet" href="default.css">
 </head>
 <body>
 	<script type="text/javascript">
@@ -126,31 +22,38 @@
 			<div class="page">
 				<h1>page1</h1>
 				<ul class="icons">
-					<li><a href="#"><i class="fa fa-home fa-3x"></i></a></li>
-					<li><a href="#"><i class="fa fa-cog fa-3x"></i></a></li>
-					<li><a href="#"><i class="fa fa-camera-retro fa-3x"></i></a></li>
-					<li><a href="#"><i class="fa fa-chrome fa-3x"></i></a></li>
-					<li><a href="#"><i class="fa fa-film fa-3x"></i></a></li>
+					<li><a href="https://csslick.github.io/cal" target="_blank"><i class="fa fa-calculator fa-3x"></i></a><span>계산기</span></li>
+					<li><a href="https://csslick.github.io/lightbox" target="_blank"><i class="fa fa-picture-o fa-3x"></i></a><span>lightbox</span></li>
+					<li><a href="https://csslick.github.io/calendar" target="_blank"><i class="fa fa-calendar fa-3x"></i></a><span>달력</span></li>
+					<li><a href="https://csslick.github.io/page3d" target="_blank"><i class="fa fa-cube fa-3x"></i></a><span>3d page</span></li>
 				</ul>
 			</div>
 			<div class="page">
 				<h1>page2</h1>
 				<ul class="icons">
-					<li><a href="#"><i class="fa fa-home fa-3x"></i></a></li>
-					<li><a href="#"><i class="fa fa-cog fa-3x"></i></a></li>
-					<li><a href="#"><i class="fa fa-camera-retro fa-3x"></i></a></li>
+					<li><a href="#"><i class="fa fa-home fa-3x"></i></a><span>home</span></li>
+					<li><a href="https://csslick.github.io/banner" target="_blank"><i class="fa fa-square-o fa-3x"></i></a><span>다이네믹배너</span></li>
+					<li><a href="https://csslick.github.io/map" target="_blank"><i class="fa fa-map-marker fa-3x"></i></a><span>지도</span></li>
+					<li><a href="https://csslick.github.io/weather" target="_blank"><i class="fa fa-sun-o fa-3x"></i></a><span>날씨</span></li>
 				</ul>				
 			</div>
 			<div class="page">
 				<h1>page3</h1>
+				<ul class="icons">
+					<li><a href="#"><i class="fa fa-home fa-3x"></i></a><span>home</span></li>
+					<li><a href="https://csslick.github.io/quiz" target="_blank"><i class="fa fa-gamepad fa-3x"></i></a><span>퀴즈게임</span></li>
+					<li><a href="https://csslick.github.io/memo" target="_blank"><i class="fa fa-sticky-note-o fa-3x"></i></a><span>스티키메모장</span></li>
+				</ul>
 			</div>
 			<div class="page">
 				<h1>page4</h1>
 				<ul class="icons">
-					<li><a href="#"><i class="fa fa-home fa-3x"></i></a></li>
-					<li><a href="#"><i class="fa fa-cog fa-3x"></i></a></li>
-					<li><a href="#"><i class="fa fa-camera-retro fa-3x"></i></a></li>
-				</ul>				
+					<li><a href="#"><i class="fa fa-home fa-3x"></i></a><span>home</span></li>
+				</ul>
+				<article>
+					<a href="http://www.hanbit.co.kr/store/books/look.php?p_code=B8907454397">한빛미디어</a>		
+					<a href="http://cafe.naver.com/csslick">자바스크립트 프로젝트북 커뮤니티 카페</a>
+				</article>
 			</div>
 		</div>
 	</div>

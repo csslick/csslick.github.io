@@ -92,4 +92,10 @@
 		window.onresize = function(){
 			init_page();	
 		}
+
+		$('.icons li > a[href="#"]').click(function(){
+			show_indicator(1);	// 홈아이콘 클릭시 홈으로 이동
+			console.log('init');
+			return false;
+		});
 		

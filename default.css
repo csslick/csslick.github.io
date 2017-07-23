@@ -1,0 +1,135 @@
+		*{ margin: 0; padding: 0; }
+		body{ width: 100%; height: 100%; }
+		ul{ list-style: none; }
+		a{ 
+			text-decoration: none;
+			color: inherit; 
+		}
+		h1{
+			font-weight: normal; 
+		}
+		header{ 
+			position: absolute; 
+			width: 100%;
+			text-align: center;
+			height: 80px;
+			background: white;
+			z-index: 9;
+		}
+		header h1{ 
+			text-align: center; 
+			line-height: 80px;
+		}
+		.container{
+			position: absolute;
+			width: 100%; height: 100%;
+			margin: 0px auto;
+			transform-style: preserve-3d;
+			perspective: 800px;
+			overflow: hidden;
+			box-sizing: border-box;
+		}
+		.wrapper{
+			width: 100%; height: 100%;
+			position: relative;
+			margin: auto;
+			transform-style: preserve-3d;
+			transition-duration: 1s;
+		}
+		.wrapper > .page{ 
+			position: absolute;
+			width: 100%; height: 100%;
+			position: absolute;
+			left: 0; top: 0;
+			backface-visibility: hidden;
+			padding-top: 80px;
+		}
+		.page > h1{ 
+			padding: 20px; 
+			color: white;
+		}
+		.wrapper > .page:nth-child(1){
+			background: orange;
+			background-image: url('./img01.jpg');
+			background-size: cover;
+		}
+		.wrapper > .page:nth-child(2){
+			background: pink;
+			background-image: url('./img02.jpg');
+			background-size: cover;			
+		}	
+		.wrapper > .page:nth-child(3){
+			background: lightblue;
+			background-image: url('./img03.jpg');
+			background-size: cover;	
+		}
+		.wrapper > .page:nth-child(4){
+			background: lightgray;
+			background-image: url('./img04.jpg');
+			background-size: cover;				
+		}							
+
+		#indicator{ 
+			text-align: center; margin-top: 20px;
+			position: absolute;
+			left: 0;right: 0; bottom: 20px;
+		}
+		#indicator li{
+			display: inline-block;
+			font-size: 12px;
+			padding: 5px 10px; margin: 5px;
+			border: 1px solid #999;
+			border-radius: 50%;
+			color: white;
+			cursor: pointer;
+		}
+		#indicator li.active{ 
+			background-color: rgba(50%,50%,50%, 0.5);
+			color: white;
+		}
+
+		ul.icons{
+			overflow: hidden;
+			padding: 64px;
+		}
+		ul.icons > li{ 
+			position: relative;
+			display: inline-block; 
+			margin: 0 24px 64px 24px;
+			background: #999;
+			padding: 10px;
+			width: 48px; height: 48px;
+			border-radius: 15px;
+			text-align: center;
+			border: 1px solid rgba(100, 100, 100, 0.3);
+			color: white;
+			opacity: 0.8;
+		}
+		ul.icons > li:hover{
+			opacity: 1;
+		}		
+		ul.icons > li > span{
+			display: block;
+			position: absolute;
+			bottom: -34px; left: -5px;
+			/*border: 1px solid red; */
+			width: 60px; height: 30px;
+			padding: 0 10px;
+			text-align: center;
+			font-size: 10pt;
+			line-height: 1.1em;
+
+		}
+		.page:nth-child(4) article{
+			color: white;
+			text-align: center;
+		}
+		.page:nth-child(4) article a{
+			display: block;
+			padding: 10px 20px;
+			transition: 0.5s;
+		}
+		.page:nth-child(4) article a:hover{
+			color: cyan;
+			text-decoration: underline;
+		}
